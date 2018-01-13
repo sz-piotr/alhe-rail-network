@@ -1,7 +1,20 @@
-from hello import get_hello
+from evolution import Evolution
+from fitness import fitness
+from selection import selection
+from crossover import crossover
+from mutation import mutation
 
 def main():
-    print(get_hello())
+    evolution = Evolution(
+        list(range(10)),
+        fitness,
+        selection,
+        crossover,
+        mutation
+    )
+    for i in range(10):
+        print(evolution.population)
+        evolution.advance()
 
 if __name__ == '__main__':
     main()
