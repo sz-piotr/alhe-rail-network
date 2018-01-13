@@ -2,7 +2,7 @@ import networkx as nx
 
 class RailNetwork:
 
-    __init__(self):
+    def __init__(self):
         self.graph = nx.Graph()
 
     def score(self, powerplants):
