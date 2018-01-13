@@ -18,11 +18,11 @@ deactivate
 2. Run the program
 
 ```
-python src/main.py
+./run
 ```
 
 3. Run the tests
 
 ```
-python -m unittest discover -s=src
+./test
 ```
