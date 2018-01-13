@@ -1,6 +1,6 @@
 import math
 
-def makefitness(U, T, cities)
+def makefitness(U, T, cities):
     powerplants = filter(lambda city: city.has_powerplant, cities)
     electicity_costs = [electicity_cost(city, powerplants, U) for city in cities]
 

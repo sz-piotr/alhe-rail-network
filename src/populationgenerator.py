@@ -7,7 +7,7 @@ def generate_single_tree(points):
     for p in points:
         for r in points:
             if  p != r:
-                g.add_edge(p,r,weight=random.uniform(0,100))
+                g.add_edge(p,r,weight=random.uniform(0,10))
 
     return nx.minimum_spanning_tree(g)
 
