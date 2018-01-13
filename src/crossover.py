@@ -1,2 +1,4 @@
+import random
+
 def crossover(a, b):
-    return a
+    return random.uniform(a, b)

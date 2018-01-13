@@ -12,9 +12,10 @@ def main():
         crossover,
         mutation
     )
-    for i in range(10):
-        print(evolution.population)
+    print(evolution.population)
+    for i in range(100):
         evolution.advance()
+    print(evolution.population)
 
 if __name__ == '__main__':
     main()
