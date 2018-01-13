@@ -1,0 +1,10 @@
+U_param T_param population max_iterations
+city_x city_y has_powerplant
+
+Example:
+2 0.1 1000 1000000
+0 0 1
+10 0 0
+0 10 0
+-10 0 0
+0 -10 0
