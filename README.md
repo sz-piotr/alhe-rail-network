@@ -14,14 +14,19 @@ To deactivate
 ```
 deactivate
 ```
+2. Install the dependencies
 
-2. Run the program
+```
+pip install -r requirements.txt
+```
+
+3. Run the program
 
 ```
 ./run
 ```
 
-3. Run the tests
+4. Run the tests
 
 ```
 ./test
