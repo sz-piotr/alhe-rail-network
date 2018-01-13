@@ -12,7 +12,6 @@ def main():
         crossover,
         mutation
     )
-    print 'test commit'
     print(evolution.population)
     for i in range(100):
         evolution.advance()
