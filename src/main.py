@@ -19,10 +19,10 @@ def main():
         mutation_simple
     )
 
-    print(evolution.population)
+    evolution.print_stats()
     for i in range(problem.iterations):
         evolution.advance()
-    print(evolution.population)
+    evolution.print_stats()
 
 if __name__ == '__main__':
     main()
