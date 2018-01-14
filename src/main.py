@@ -2,7 +2,7 @@ from evolution import Evolution
 from fitness import makefitness
 from selection import selection
 from crossover import crossover
-from mutation import mutation
+from mutation import mutation_simple
 from population import generate_population
 import configuration
 
@@ -16,7 +16,7 @@ def main():
         makefitness(problem.U, problem.T, problem.world),
         selection,
         crossover,
-        mutation
+        mutation_simple
     )
 
     print(evolution.population)

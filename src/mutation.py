@@ -12,13 +12,12 @@ def mutation(graph, del_orig=True):
 
     if del_orig:
         # delete chosen edge
-        graph.remove_edge(chosen_edge[0], chosen_edge[1])
+        graph.remove_edge(*chosen_edge)
         # add new edge
-    graph.add_edge(chosen_nonedge[0], chosen_nonedge[1])
+    graph.add_edge(*chosen_nonedge)
     return graph
 
 def mutation_simple(graph):
     nonedge = random.choice(list(nx.non_edges(graph)))
-    graph.add_edge(nonedge)
-
+    graph.add_edge(*nonedge)
     return nx.minimum_spanning_tree(graph)
