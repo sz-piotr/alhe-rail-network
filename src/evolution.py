@@ -25,6 +25,9 @@ class Evolution:
     def select(self):
         return self.population[self.selection(self.scores)]
 
+    def stats(self):
+        return (min(self.scores), mean(self.scores), max(self.scores))
+
     def print_stats(self):
         print('iterations', self.iterations)
         print('min', min(self.scores))

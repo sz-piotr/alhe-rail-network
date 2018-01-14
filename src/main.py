@@ -7,10 +7,11 @@ from population import generate_population
 import configuration
 
 def main():
-    path = 'src/config'
-
+    path = 'problems/example'
     problem = configuration.load(path)
+    solve(problem)
 
+def solve(problem):
     evolution = Evolution(
         generate_population(len(problem.world), problem.population),
         makefitness(problem.U, problem.T, problem.world),
@@ -19,10 +20,27 @@ def main():
         mutation_simple
     )
 
-    evolution.print_stats()
+    before = evolution.stats()
     for i in range(problem.iterations):
         evolution.advance()
-    evolution.print_stats()
+    after = evolution.stats()
+    write_results(problem, before, after)
+
+def write_results(problem, before, after):
+    data = [
+        problem.U,
+        problem.T,
+        problem.population,
+        problem.iterations,
+        len(problem.world),
+        len(list(filter(lambda c: c.has_powerplant, problem.world))),
+        *before,
+        *after
+    ]
+    print(data)
+    with open('problems/results.csv', 'a') as f:
+        f.write(','.join(map(str, data)))
+        f.write('\n')
 
 if __name__ == '__main__':
     main()
