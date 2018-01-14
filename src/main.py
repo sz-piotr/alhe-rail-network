@@ -1,26 +1,26 @@
 from evolution import Evolution
-from fitness import fitness
+from fitness import makefitness
 from selection import selection
 from crossover import crossover
 from mutation import mutation
-import populationgenerator
-import loadconfiguration
+from population import generate_population
+import configuration
 
 def main():
-    path = '../src/config'
-    testconfig = loadconfiguration.loadConfig(path)
-    points = loadconfiguration.loadPoints(path)
+    path = 'src/config'
+
+    problem = configuration.load(path)
 
     evolution = Evolution(
-        populationgenerator.generate_population(populationgenerator.generate_single_tree(points), 10),
-        fitness,
+        generate_population(len(problem.world), problem.population),
+        makefitness(problem.U, problem.T, problem.world),
         selection,
         crossover,
         mutation
     )
 
     print(evolution.population)
-    for i in range(100):
+    for i in range(problem.iterations):
         evolution.advance()
     print(evolution.population)
 
