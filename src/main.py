@@ -9,14 +9,20 @@ import networkx as nx
 import matplotlib as plt
 import representation
 import configuration
+from generator import generate_problems
+
+def main2():
+    path = 'problems/example'
+    problem = configuration.load(path)
+    solve(problem, save=True)
 
 def main():
-    path = '../problems/example'
-    problem = configuration.load(path)
-    solve(problem)
+    problems = generate_problems()
+    for i, problem in enumerate(problems):
+        print(i, len(problems))
+        solve(problem, save=False)
 
-
-def solve(problem):
+def solve(problem, save=False):
     bests = []
     evolution = Evolution(
         generate_population(len(problem.world), problem.population),
@@ -32,8 +38,9 @@ def solve(problem):
 
     after = evolution.stats()
 
-    representation.save_chart('../results', bests, problem.iterations)
-    representation.save_graph('../results', problem, evolution.population[evolution.scores.index(min(evolution.scores))])
+    if(save):
+        representation.save_chart('results', bests, problem.iterations)
+        representation.save_graph('results', problem, evolution.population[evolution.scores.index(min(evolution.scores))])
     write_results(problem, before, after)
 
 
@@ -48,8 +55,7 @@ def write_results(problem, before, after):
         *before,
         *after
     ]
-    print(data)
-    with open('../problems/results.csv', 'a') as f:
+    with open('problems/results.csv', 'a') as f:
         f.write(','.join(map(str, data)))
         f.write('\n')
 

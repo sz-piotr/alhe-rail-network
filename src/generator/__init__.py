@@ -2,12 +2,12 @@ from collections import namedtuple
 from .generateworld import generateworld
 
 REPEAT_COUNT = 5
-CITY_COUNTS = [5, 10, 20, 50]
+CITY_COUNTS = [5, 20, 50, 100]
 POWER_PLANT_RATIOS = [0, 0.2, 0.5, 0.7]
 U_VALUES = [0.05, 0.10, 0.15]
 T_VALUES = [1, 2, 5, 10]
-POPULATION_COUNTS = [10, 100, 1000]
-ITERATION_COUNTS = [100, 1000, 10000, 1000000]
+POPULATION_COUNTS = [10, 100]
+ITERATION_COUNTS = [100, 1000]
 
 Problem = namedtuple('Problem', ['U', 'T', 'population', 'iterations', 'world'])
 
