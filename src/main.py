@@ -19,7 +19,7 @@ def main2():
 def main():
     problems = generate_problems()
     for i, problem in enumerate(problems):
-        print(i, len(problems))
+        print(i, len(problems), len(problem.world), problem.iterations)
         solve(problem, save=False)
 
 def solve(problem, save=False):

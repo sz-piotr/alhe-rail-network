@@ -1,7 +1,7 @@
 from collections import namedtuple
 from .generateworld import generateworld
 
-REPEAT_COUNT = 5
+REPEAT_COUNT = 1
 CITY_COUNTS = [5, 20, 50, 100]
 POWER_PLANT_RATIOS = [0, 0.2, 0.5, 0.7]
 U_VALUES = [0.05, 0.10, 0.15]
