@@ -10,7 +10,10 @@ import matplotlib as plt
 import representation
 import configuration
 from generator import generate_problems, Problem
-from generator.generateworld import generateworld
+from generator.generateworld import generateworld, random_locations, world_from
+import random
+
+random.seed(0)
 
 def main2():
     path = 'problems/example'
@@ -18,8 +21,27 @@ def main2():
     solve(problem, save=True)
 
 def main3():
-    problem = Problem(0.1, 2, 100, 1000, generateworld(100, 10))
-    solve(problem, save=True, img_prefix="u0.1t2_p100i1000_c100p10_")
+    loc20 = random_locations(20)
+    city_20_3 = world_from(loc20, 3)
+    city_20_6 = world_from(loc20, 6)
+    city_20_10 = world_from(loc20, 10)
+    problems = [
+        (Problem(0.1, 2, 100, 200, city_20_3), "01_u0.1t2c20p3"),
+        (Problem(0.2, 2, 100, 200, city_20_3), "02_u0.2t2c20p3"),
+        (Problem(0.5, 2, 100, 200, city_20_3), "03_u0.5t2c20p3"),
+        (Problem(0.1, 1, 100, 200, city_20_3), "04_u0.1t1c20p3"),
+        (Problem(0.1, 5, 100, 200, city_20_3), "05_u0.1t5c20p3"),
+
+        (Problem(0.1, 2, 100, 200, city_20_6), "06_u0.1t2c20p6"),
+        (Problem(0.1, 2, 100, 200, city_20_10), "07_u0.1t2c20p10"),
+
+        (Problem(0.1, 2, 100, 200, generateworld(20, 3)), "08_u0.1t2c20p3"),
+        (Problem(0.1, 2, 100, 200, generateworld(20, 3)), "09_u0.1t2c20p3"),
+        (Problem(0.1, 2, 100, 200, generateworld(20, 3)), "10_u0.1t2c20p3"),
+    ]
+    for problem, prefix in problems:
+        solve(problem, save=True, img_prefix=prefix)
+
 
 def main():
     problems = generate_problems()
@@ -47,9 +69,9 @@ def solve(problem, save=False, img_prefix=""):
     after = evolution.stats()
 
     if(save):
-        representation.save_chart('results/' + img_prefix + 'chart.png', bests, problem.iterations)
-        representation.save_graph('results/' + img_prefix + 'first.png', problem, first)
-        representation.save_graph('results/' + img_prefix + 'best.png', problem, evolution.best(min))
+        # representation.save_chart('results/' + img_prefix + 'chart.png', bests, problem.iterations)
+        # representation.save_graph('results/' + img_prefix + 'first.png', problem, first)
+        representation.save_graph('results2/' + img_prefix + '.png', problem, evolution.best(min))
     else:
         write_results(problem, before, after)
 

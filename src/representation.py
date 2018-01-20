@@ -32,4 +32,6 @@ def save_graph(name, problem, graph):
 
     plt.axis('off')
     plt.savefig(name, bbox_inches="tight")
-    plt.show()
+    plt.clf()
+
+    # plt.show()
