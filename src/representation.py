@@ -2,17 +2,13 @@ import datetime
 import matplotlib.pyplot as plt
 import networkx as nx
 
-def save_chart(path,bests,iterations):
+def save_chart(name, bests, iterations):
     figure, axes = plt.subplots()
     plt.ylabel('Uzyskany koszt sieci w danej iteracji')
     plt.xlabel('Iteracja')
     plt.plot(range(int(iterations)), bests, linewidth=2.0)
+    plt.savefig(name, bbox_inches='tight')
     plt.show()
-    plt.savefig(path + "/" + 'chart.png',
-                bbox_inches='tight', format='png')
-
-
-    plt.close(figure)
 
 
 def get_nodes_with_powerplant(problem, graph):
@@ -24,14 +20,16 @@ def get_nodes_with_powerplant(problem, graph):
     return nodesWithPowerplant
 
 
-def save_graph(path, problem, graph):
+def save_graph(name, problem, graph):
+    pos = [[city.x, city.y] for city in problem.world]
+    powerplants = get_nodes_with_powerplant(problem, graph)
 
-    pos = nx.spring_layout(graph)
-    nx.draw_networkx_nodes(graph, pos, node_size=600, node_shape='o', node_color='0.75')
-    nx.draw_networkx_nodes(graph, pos,nodelist=get_nodes_with_powerplant(problem, graph), node_color='r',node_size=500, alpha=0.8)
-    nx.draw_networkx_edges(graph, pos,
-                           width=2, edge_color='b')
+    nx.draw_networkx_nodes(graph, pos, node_size=40, node_color='0')
+    nx.draw_networkx_nodes(graph, pos, nodelist=powerplants, node_size=100, node_color='0')
+    nx.draw_networkx_nodes(graph, pos, nodelist=powerplants, node_color='1',node_size=40, alpha=1)
+
+    nx.draw_networkx_edges(graph, pos, width=2, edge_color='b')
 
     plt.axis('off')
-    plt.savefig(path +"/" + "last_iteration_best_graph.png", bbox_inches="tight")
+    plt.savefig(name, bbox_inches="tight")
     plt.show()
