@@ -18,8 +18,8 @@ def main2():
     solve(problem, save=True)
 
 def main3():
-    problem = Problem(0.1, 2, 100, 100, generateworld(20, 3))
-    solve(problem, save=True, img_prefix="u0.1_t2_p100_i1000_c20.3_k2_")
+    problem = Problem(0.1, 2, 100, 1000, generateworld(100, 10))
+    solve(problem, save=True, img_prefix="u0.1t2_p100i1000_c100p10_")
 
 def main():
     problems = generate_problems()
@@ -50,7 +50,8 @@ def solve(problem, save=False, img_prefix=""):
         representation.save_chart('results/' + img_prefix + 'chart.png', bests, problem.iterations)
         representation.save_graph('results/' + img_prefix + 'first.png', problem, first)
         representation.save_graph('results/' + img_prefix + 'best.png', problem, evolution.best(min))
-    write_results(problem, before, after)
+    else:
+        write_results(problem, before, after)
 
 
 def write_results(problem, before, after):
